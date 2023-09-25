@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, catchError, BehaviorSubject } from 'rxjs';
+import { Observable, map, BehaviorSubject } from 'rxjs';
 import { CharacterDetail } from '../model/character';
 import { HttpClient } from '@angular/common/http';
+import { LocationDetail } from '../model/location';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class DataService {
 
   getSingleCharacter(id: string): Observable<CharacterDetail> {
     return this.http.get<CharacterDetail>(this.BASE_URL + 'character/' + id);
+  }
+
+  getLocation(id: string) {
+    return this.http.get<LocationDetail>(this.BASE_URL + 'location/' + id);
   }
 }

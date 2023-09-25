@@ -5,8 +5,9 @@ import { ListComponent } from './components/list/list.component';
 const routes: Routes = [
   { path: 'home', component: ListComponent },
   { path: 'character/:id', loadChildren: () => import('./components/character/character.module').then(m => m.CharacterModule) },
+  { path: 'location/:id', loadChildren: () => import('./components/location/location.module').then(m => m.LocationModule) },
+  { path: 'episode/:id', loadChildren: () => import('./components/episode/episode.module').then(m => m.EpisodeModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'location', loadChildren: () => import('./location/location.module').then(m => m.LocationModule) },
   { path: '**', redirectTo: '/home' },
 ];
 

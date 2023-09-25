@@ -3,6 +3,22 @@
     <h1>{{character.name}}</h1>
     <span>Specie: {{character.species}}</span>
     <span>Genere: {{character.gender}}</span>
-    <span>Origin: {{character.origin.name}}</span>
-    <span>Location: {{character.location.name}}</span>
+    <div>
+        <span>Origin: {{character.origin.name}}</span>
+        <button (click)="navigateToOrigin()" mat-icon-button>
+            <mat-icon>near_me</mat-icon>
+        </button>
+    </div>
+    <div>
+        <span>Location: {{character.location.name}}</span>
+        <button (click)="navigateToLocation()" mat-icon-button>
+            <mat-icon>near_me</mat-icon>
+        </button>
+    </div>
+    <div>
+        <h2>Episodi</h2>
+        <ul>
+            <li *ngFor="let episode of character.episode">{{episode}}</li>
+        </ul>
+    </div>
 </div>
