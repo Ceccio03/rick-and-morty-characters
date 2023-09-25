@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Character } from 'src/app/model/character';
+import { CharacterDetail } from 'src/app/model/character';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -9,15 +8,12 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  characters: Character[] = [];
+  characters: CharacterDetail[] = [];
 
-  constructor(private characterService: DataService, private router: Router) {}
+  constructor(private dataServ: DataService) {}
 
   ngOnInit(): void {
-    this.characterService.getAllCharacters().subscribe(data => this.characters = data);
-  }
-
-  openDetail(character: Character) {
-    this.router.navigateByUrl('/detail/' + character.id);
+    // this.dataServ.getAllCharacters().subscribe(characters => this.characters = characters);
+    this.dataServ.allCharacters.subscribe(chars => this.characters = chars)
   }
 }

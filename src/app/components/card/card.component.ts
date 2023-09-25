@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Character } from 'src/app/model/character';
+import { Component, Input } from '@angular/core';
+import { CharacterDetail } from 'src/app/model/character';
 
 @Component({
   selector: 'app-card',
@@ -7,10 +7,5 @@ import { Character } from 'src/app/model/character';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
-  @Input() characterData?: Character;
-  @Output() characterSelected = new EventEmitter<Character>();
-
-  selectCharacter(){
-    this.characterSelected.emit(this.characterData);
-  }
+  @Input() character?: CharacterDetail;
 }

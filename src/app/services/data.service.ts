@@ -1,42 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, catchError } from 'rxjs';
-import { Character } from '../model/character';
+import { Observable, map, catchError, BehaviorSubject } from 'rxjs';
+import { CharacterDetail } from '../model/character';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  allCharacters = new BehaviorSubject<CharacterDetail[]>([]);
   readonly BASE_URL = 'https://rickandmortyapi.com/api/';
-  selectedCharacter = '';
-  apiPage = 1;
+  pageNumber = 1;
 
-  constructor(private http:HttpClient) {}
-
-  getAllCharacters(): Observable<Character[]> {
-    return this.http.get<any>(this.BASE_URL + this.apiPage).pipe(map((response: any) => response.results));
+  constructor(private http: HttpClient) {
+    this.getAllCharacters();
   }
 
-  nextPage(){
-    this.apiPage += 1;
-    console.log(this.apiPage);
-    this.getAllCharacters().subscribe();
-    
+  // getAllCharacters(): Observable<CharacterDetail[]> {
+  //   return this.http.get<any>(this.BASE_URL + 'character?page=' + this.pageNumber).pipe(map(data => data.results));
+  // }
+
+  getAllCharacters(): void {
+    this.http.get<any>(this.BASE_URL + 'character?page=' + this.pageNumber).pipe(map(data => data.results)).subscribe(characters => this.allCharacters.next(characters));
   }
 
-  prevPage(){
-    this.apiPage -=1
-    if (this.apiPage <=0) {
-      this.apiPage =1;
+  previousPage() {
+    if (this.pageNumber > 1) {
+      this.pageNumber--;
+      this.getAllCharacters();
     }
-    console.log(this.apiPage);
-    this.getAllCharacters().subscribe();
   }
 
-  getCharacterDetail() {
-    if (this.selectedCharacter === '') {
-      this.selectedCharacter = 'Rick Sanchez'
-    }
-    return this.http.get<Character>(this.BASE_URL + this.selectedCharacter);
+  nextPage() {
+    this.pageNumber++;
+    this.getAllCharacters();
   }
 }

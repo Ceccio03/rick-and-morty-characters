@@ -6,10 +6,11 @@
     </a>
     <span>Rick and Morty Universe</span>
     <span class="spacer"></span>
-    <button mat-icon-button>
+    <button (click)="previousPage()" mat-icon-button>
         <mat-icon>arrow_back</mat-icon>
     </button>
-    <button mat-icon-button>
+    <span>Page: {{dataServ.pageNumber}}</span>
+    <button (click)="nextPage()" mat-icon-button>
         <mat-icon>arrow_forward</mat-icon>
     </button>
 </mat-toolbar>
