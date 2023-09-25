@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
-  BASE_URL = 'https://rickandmortyapi.com/api/character/';
+  readonly BASE_URL = 'https://rickandmortyapi.com/api/';
   selectedCharacter = '';
   apiPage = 1;
 
