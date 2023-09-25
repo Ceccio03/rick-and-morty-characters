@@ -34,4 +34,8 @@ export class DataService {
     this.pageNumber++;
     this.getAllCharacters();
   }
+
+  getSingleCharacter(id: string): Observable<CharacterDetail> {
+    return this.http.get<CharacterDetail>(this.BASE_URL + 'character/' + id);
+  }
 }
