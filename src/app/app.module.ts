@@ -8,11 +8,6 @@ import { ListComponent } from './components/list/list.component';
 import { CardComponent } from './components/card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from  '@angular/common/http';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -27,11 +22,6 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatIconModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSlideToggleModule,
     SharedModule
   ],
   providers: [],
